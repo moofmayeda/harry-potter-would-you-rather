@@ -5,4 +5,17 @@ class Choice < ActiveRecord::Base
   def assignments
     self.left_assignments + self.right_assignments
   end
+
+  def count(pair)
+    self == pair.left ? pair.left_count : pair.right_count
+  end
+
+  def vote(pair)
+    if self == pair.left
+      pair.left_count += 1
+    else
+      pair.right_count += 1
+    end
+    pair.save
+  end
 end

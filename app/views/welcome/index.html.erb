@@ -4,12 +4,19 @@
       <h1>Would you rather...</h1>
     </div>
     <div class="row choices">
-      <span id="left-choice"><%= @pair.left.text %></span>
-      <span id="right-choice"><%= @pair.right.text %></span>
+      <span class="new left-choice"><%= @pair.left.text %></span>
+      <span class="new right-choice"><%= @pair.right.text %></span>
     </div>
     <div class="row">
-      <button class="btn btn-info left-button"><span id="left-button-text"></span></button>
-      <button class="btn btn-warning right-button"><span id="right-button-text"></span></button>
+      <%= link_to "<button class='btn btn-info left-btn vote'>Vote</button>".html_safe, pair_choice_vote_path(@pair, @pair.left), method: "post", remote: true %>
+      <%= link_to "<button class='btn btn-warning right-btn vote'>Vote</button>".html_safe, pair_choice_vote_path(@pair, @pair.right), method: "post", remote: true %>
+    </div>
+    <div class="row">
+      <span class="old left-choice-count"></span>
+      <span class="old right-choice-count"></span>
+    </div>
+    <div class="row">
+      <%= link_to "New Choices", root_path, class: "btn btn-success new-choices hide" %>
     </div>
   </div>
 </div>
