@@ -1,0 +1,6 @@
+<tr>
+  <td><%= pair.left.text %></td>
+  <td><%= pair.left_count %><%= " (" + pair.percent(pair.left).to_s + "%)" if pair.percent(pair.left) %></td>
+  <td><%= pair.right_count %><%= " (" + pair.percent(pair.right).to_s + "%)" if pair.percent(pair.right) %></td>
+  <td><%= pair.left.text %></td>
+</tr>
