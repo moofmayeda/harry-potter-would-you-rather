@@ -28,4 +28,12 @@ class Pair < ActiveRecord::Base
     lower_bound = 50.0 - percent/2.0
     self.select {|pair| pair.percent(pair.left) && pair.percent(pair.right) && pair.percent(pair.left) >= lower_bound && pair.percent(pair.left) <= upper_bound}
   end
+
+  def losing
+    if self.winning.size == 2
+      self.right
+    else
+      self.winning.first == self.left ? self.right : self.left
+    end
+  end
 end

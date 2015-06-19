@@ -1,6 +1,6 @@
 <tr>
-  <td><%= pair.left.text %></td>
-  <td><%= pair.left_count %><%= " (" + pair.percent(pair.left).to_s + "%)" if pair.percent(pair.left) %></td>
-  <td><%= pair.right_count %><%= " (" + pair.percent(pair.right).to_s + "%)" if pair.percent(pair.right) %></td>
-  <td><%= pair.left.text %></td>
+  <td><%= pair.winning.first.text %></td>
+  <td><%= pair.winning.first.count(pair) %><%= " (" + pair.percent(pair.winning.first).to_s + "%)" if pair.percent(pair.winning.first) %></td>
+  <td><%= pair.losing.count(pair) %><%= " (" + pair.percent(pair.losing).to_s + "%)" if pair.percent(pair.losing) %></td>
+  <td><%= pair.losing.text %></td>
 </tr>
