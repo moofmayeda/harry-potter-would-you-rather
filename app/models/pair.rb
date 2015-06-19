@@ -36,4 +36,13 @@ class Pair < ActiveRecord::Base
       self.winning.first == self.left ? self.right : self.left
     end
   end
+
+  def self.search(search)
+    if search
+      choices = Choice.where('UPPER(choices.text) LIKE UPPER(?)', "%#{search}%").pluck(:id)
+      self.joins('LEFT OUTER JOIN choices aliasedchoices ON aliasedchoices.id = pairs.left_id LEFT OUTER JOIN choices on choices.id = pairs.right_id').where('aliasedchoices.id IN (?) OR choices.id IN (?)', choices, choices)
+    else
+      where(nil)
+    end
+  end
 end

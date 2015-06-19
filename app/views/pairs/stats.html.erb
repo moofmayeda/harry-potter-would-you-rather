@@ -1,7 +1,9 @@
 <h1>STATS</h1>
-<h3>Dominating pairs</h3>
-<%= render partial: "table", locals: {pairs: @dominating_pairs} %>
-<h3>Close pairs</h3>
-<%= render partial: "table", locals: {pairs: @close_pairs} %>
+<%= form_tag stats_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 <h3>All pairs</h3>
 <%= render partial: "table", locals: {pairs: @pairs} %>
