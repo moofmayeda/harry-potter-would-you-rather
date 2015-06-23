@@ -1,10 +1,10 @@
 <div class="table-responsive">
   <table class="table">
     <thead>
-      <th>Winning Choice</th>
-      <th>Votes for Winning Choice</th>
-      <th>Votes for Losing Choice</th>
-      <th>Losing Choice</th>
+      <th><%= sortable "winning-text" %>Winning Choice</th>
+      <th><%= sortable "winning-percent" %>Votes for Winning Choice</th>
+      <th><%= sortable "losing-percent" %>Votes for Losing Choice</th>
+      <th><%= sortable "losing-text" %>Losing Choice</th>
     </thead>
     <tbody>
       <%= render partial: "pair", collection: pairs, as: :pair %>
