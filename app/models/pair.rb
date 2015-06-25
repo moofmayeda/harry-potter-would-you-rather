@@ -19,16 +19,6 @@ class Pair < ActiveRecord::Base
     self.left == choice ? (self.left_count / total * 100).round(1) : (self.right_count / total * 100).round(1) unless total==0
   end
 
-  def self.dominant(percent)
-    self.select {|pair| pair.percent(pair.winning.first) ? pair.percent(pair.winning.first) >= percent : false}
-  end
-
-  def self.close(percent)
-    upper_bound = 50.0 + percent/2.0
-    lower_bound = 50.0 - percent/2.0
-    self.select {|pair| pair.percent(pair.left) && pair.percent(pair.right) && pair.percent(pair.left) >= lower_bound && pair.percent(pair.left) <= upper_bound}
-  end
-
   def losing
     if self.winning.size == 2
       self.right
@@ -44,5 +34,21 @@ class Pair < ActiveRecord::Base
     else
       where(nil)
     end
+  end
+
+  def greater_percent
+    [self.percent(left), self.percent(right)].max || 0
+  end
+
+  def lesser_percent
+    [self.percent(left), self.percent(right)].min || 0
+  end
+
+  def greater_count
+    [left_count, right_count].max
+  end
+
+  def lesser_count
+    [left_count, right_count].min
   end
 end

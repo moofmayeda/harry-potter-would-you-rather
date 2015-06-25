@@ -1,12 +1,13 @@
 module ApplicationHelper
 
-  def sortable(column)
-    if column_to_db(column) == sort_column
+  def sortable(new_parameter)
+    if new_parameter == sort_param
       css_class = (sort_direction == "asc") ? "glyphicon glyphicon-circle-arrow-up" : "glyphicon glyphicon-circle-arrow-down"
+      direction = (sort_direction == "asc") ? "desc" : "asc"
     else
-      css_class = nil
+      css_class = (sort_direction == "asc") ? "glyphicon glyphicon-circle-arrow-down" : "glyphicon glyphicon-circle-arrow-up"
+      direction = (sort_direction == "asc") ? "asc" : "desc"
     end
-    direction = (column_to_db(column) == sort_column && sort_direction == "asc") ? "desc" : "asc"
-    link_to "", stats_path(:sort => column, :direction => direction), class: css_class
+    link_to "", stats_path(:sort => new_parameter, :direction => direction, :search => search_param), class: css_class
   end
 end
