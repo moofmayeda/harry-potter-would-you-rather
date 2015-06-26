@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root 'welcome#index'
   match('/pairs/:pair_id/vote/:id', {:via => :post, :to => 'votes#create', as: :pair_choice_vote})
   match('/stats', {:via => :get, :to => 'pairs#stats', as: :stats})

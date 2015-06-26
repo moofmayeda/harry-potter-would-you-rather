@@ -18,4 +18,8 @@ class Choice < ActiveRecord::Base
     end
     pair.save
   end
+
+  def display_name
+    text
+  end
 end
