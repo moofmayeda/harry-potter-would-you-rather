@@ -1,18 +1,7 @@
 ActiveAdmin.register Pair do
   menu priority: 1
-  actions :all, except: [:show, :edit]
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
+  actions :all, except: [:show]
+  permit_params :left_id, :right_id, left_attributes: [:id, :text], right_attributes: [:id, :text]
 
 	index do
 		selectable_column
@@ -30,4 +19,18 @@ ActiveAdmin.register Pair do
 		end
     actions
 	end
+
+  form do |f|
+    inputs "Choices" do
+      f.object.build_left if f.object.new_record?
+      f.semantic_fields_for :left do |l|
+        l.input :text, label: "Left"
+      end
+      f.object.build_right if f.object.new_record?
+      f.semantic_fields_for :right do |r|
+        r.input :text, label: "Right"
+      end
+    end
+    actions
+  end
 end
