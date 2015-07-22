@@ -9,7 +9,7 @@ private
 	def random_image
     files = Dir.entries(
       "#{Rails.root}/public/images" 
-    )
+    ).select { |filename|  File.extname(filename) == ".jpg"  }
     files[rand(files.length)]
   end
 end
