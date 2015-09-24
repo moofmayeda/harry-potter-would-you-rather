@@ -2,35 +2,31 @@
   <div class="row text-center">
     <h1>Would you rather...</h1>
   </div>
-  <div class="col-xs-5">
-    <div class="row">
-      <h3 class="new left-choice text-right"><%= @pair.left.text %></h3>
+  <div class="row">
+    <div class="col-xs-5">
+        <h3 class="new left-choice text-right"><%= @pair.left.text %></h3>
     </div>
-    <div class="row">
-      <%= link_to "<button class='btn btn-info left-btn pull-right vote'>Vote</button>".html_safe, pair_choice_vote_path(@pair, @pair.left), method: "post", remote: true %>
+    <div class="col-xs-2">
+        <h3 class="text-center">OR</h3>
     </div>
-    <div class="row">
-      <h3 class="old left-choice-count text-right"></h3>
-    </div>
-  </div>
-  <div class="col-xs-2">
-    <div class="row">
-      <h3 class="text-center">OR</h3>
+    <div class="col-xs-5">
+        <h3 class="new right-choice"><%= @pair.right.text %></h3>
     </div>
   </div>
-  <div class="col-xs-5">
-    <div class="row">
-      <h3 class="new right-choice"><%= @pair.right.text %></h3>
+  <div class="row">
+    <div class="col-xs-5">
+      <%= link_to "<button class='btn btn-default left-btn pull-right vote'>Vote</button>".html_safe, pair_choice_vote_path(@pair, @pair.left), method: "post", remote: true %>
+      <h3 class="left-choice-count text-right"></h3>
     </div>
-    <div class="row">
-      <%= link_to "<button class='btn btn-warning right-btn vote'>Vote</button>".html_safe, pair_choice_vote_path(@pair, @pair.right), method: "post", remote: true %>
+    <div class="col-xs-2">
     </div>
-    <div class="row">
-      <h3 class="old right-choice-count"></h3>
+    <div class="col-xs-5">
+      <%= link_to "<button class='btn btn-default right-btn vote'>Vote</button>".html_safe, pair_choice_vote_path(@pair, @pair.right), method: "post", remote: true %>
+      <h3 class="right-choice-count"></h3>
     </div>
   </div>
   <div class="row text-center">
-    <%= link_to "New Choices", root_path, class: "btn btn-success new-choices hide" %>
+    <%= link_to "NEXT!", root_path, class: "btn btn-danger new-choices hide" %>
   </div>
   <div class="row text-center">
     <%= image_tag @random_image, class: "drawings hide" %>
